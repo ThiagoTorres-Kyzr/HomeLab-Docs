@@ -156,9 +156,9 @@ Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organ
 > Resultado: detectado, mas não classificado como malicioso. O Windows Defender não pode bloquear indiscriminadamente gravações na chave Run, já que softwares legítimos a usam constantemente, ele avalia o payload apontado, e se este parecer benigno, o mecanismo de persistência permanece ativo. É exatamente o tipo de cenário que justifica uma regra de detecção dedicada: quando não dá para bloquear de forma limpa, você detecta. Aqui o Hayabusa se mostra mais útil que uma solução de detecção em tempo real, pois oferece um rastro para seguir em uma investigação.
 
 ### Visualização dos dados via Wazuh após conclusão dos testes:
-![Dashboard Wazuh - Alert groups evolution e Alerts](images\Wazuh_Dashboard_Alerts.png)
-![Dashboard Wazuh - MITRE attacks by tactic e Rule level by tactic](images\Wazuh_Dashboard_Mitre.png)
-![Dashboard Wazuh - Top tactics, Rule level by attack, evolução de alertas](images\Wazuh_Dashboard_TopTactics.png)
+![Dashboard Wazuh - Alert groups evolution e Alerts](images/Wazuh_Dashboard_Alerts.png)
+![Dashboard Wazuh - MITRE attacks by tactic e Rule level by tactic](images/Wazuh_Dashboard_Mitre.png)
+![Dashboard Wazuh - Top tactics, Rule level by attack, evolução de alertas](images/Wazuh_Dashboard_TopTactics.png)
 
 ## Sumário
  
