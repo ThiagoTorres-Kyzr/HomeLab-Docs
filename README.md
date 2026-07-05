@@ -8,7 +8,15 @@ O homelab segue um cenário de validação de defesas com um dispositivo endurec
 - [Metodologia](#metodologia)
 - [Mudanças Realizadas (Hardening)](#mudanças-realizadas-hardening)
 - [Testes](#testes)
-- [Sumário](#sumário)
+
+## Sumário
+ 
+- O Defender é eficaz contra ferramentas de ataque conhecidas e não modificadas.
+- Comportamentos genéricos do Windows (comandos de descoberta, gravações no registro) não são bloqueados por nenhuma das medidas de hardening aplicadas.
+- A detecção baseada em assinaturas tem uma via clara de evasão: ferramentas personalizadas ou execução apenas em memória.
+- A cobertura via Sysmon/Sigma é mais orientada a comportamento, e por isso mais duradoura do que depender só de assinaturas de antivírus.
+- O ambiente endurecido gerou um volume de logs significativamente maior que a máquina em estado padrão, um custo operacional relevante a se considerar.
+
 ## Infraestrutura
 
 **Hardware:**
@@ -143,7 +151,7 @@ Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organ
  
 **Kerberoasting** (`T1558.003`) e **AS-REP Roasting** (`T1558.004`)
  
-> Resultado: nada foi detectado durante a etapa de aquisição de pré-requisitos, mas a execução em si foi interrompida imediatamente,comportamento esperado de um antivírus. Uma implementação customizada de Kerberoasting, ou o Rubeus rodando apenas em memória, provavelmente escapariam da detecção.
+> Resultado: nada foi detectado durante a etapa de aquisição de pré-requisitos, mas a execução em si foi interrompida imediatamente, comportamento esperado de um antivírus. Uma implementação customizada de Kerberoasting, ou o Rubeus rodando apenas em memória, provavelmente escapariam da detecção.
 
 ### Teste 3: Persistência
  
@@ -159,11 +167,3 @@ Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organ
 ![Dashboard Wazuh - Alert groups evolution e Alerts](images/Wazuh_Dashboard_Alerts.png)
 ![Dashboard Wazuh - MITRE attacks by tactic e Rule level by tactic](images/Wazuh_Dashboard_Mitre.png)
 ![Dashboard Wazuh - Top tactics, Rule level by attack, evolução de alertas](images/Wazuh_Dashboard_TopTactics.png)
-
-## Sumário
- 
-- O Defender é eficaz contra ferramentas de ataque conhecidas e não modificadas.
-- Comportamentos genéricos do Windows (comandos de descoberta, gravações no registro) não são bloqueados por nenhuma das medidas de hardening aplicadas.
-- A detecção baseada em assinaturas tem uma via clara de evasão: ferramentas personalizadas ou execução apenas em memória.
-- A cobertura via Sysmon/Sigma é mais orientada a comportamento, e por isso mais duradoura do que depender só de assinaturas de antivírus.
-- O ambiente endurecido gerou um volume de logs significativamente maior que a máquina em estado padrão, um custo operacional relevante a se considerar.
