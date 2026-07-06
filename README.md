@@ -1,4 +1,4 @@
-# Homelab: Detecção de Ameaças e Investigação de Incidentes
+# Homelab: Validação de Detecção e Resposta
 
 O homelab segue um cenário de validação de defesas com um dispositivo endurecido (hardening), usando ataques mapeados ao MITRE ATT&CK.
 
@@ -15,8 +15,9 @@ O homelab segue um cenário de validação de defesas com um dispositivo endurec
 - Comportamentos genéricos do Windows (comandos de descoberta, gravações no registro) não são bloqueados por nenhuma das medidas de hardening aplicadas.
 - A detecção baseada em assinaturas tem uma via clara de evasão: ferramentas personalizadas ou execução apenas em memória.
 - A cobertura via Sysmon/Sigma é mais orientada a comportamento, e por isso mais duradoura do que depender só de assinaturas de antivírus.
-- O ambiente endurecido gerou um volume de logs significativamente maior que a máquina em estado padrão, um custo operacional relevante a se considerar.
 - O ambiente não endurecido é relativamente seguro, mas em situações de investigação seja em tempo real ou como forense, deixa a desejar quanto aos dados disponíveis.
+- O ambiente endurecido gerou um volume de logs significativamente maior que a máquina em estado padrão, um custo operacional relevante a se considerar.
+- A diferença em volume ocorreu devido a diferentes fontes reportando diversos eventos simultâneamente, frequentemente reportando o mesmo evento. Removendo duplicatas (alertas de diferentes fontes sobre o mesmo evento) ainda demonstrou maior diversidade de dados no final considerando que existiam na máquina endurecida, regras de detecção tanto no windows, quanto no software adicionado que contribuiram para esse maior volume.
 
 ## Infraestrutura
 
@@ -152,7 +153,7 @@ Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organ
  
 **Kerberoasting** (`T1558.003`) e **AS-REP Roasting** (`T1558.004`)
  
-> Resultado: nada foi detectado durante a etapa de aquisição de pré-requisitos, mas a execução em si foi interrompida imediatamente, comportamento esperado de um antivírus. Uma implementação customizada de Kerberoasting, ou o Rubeus rodando apenas em memória, provavelmente escapariam da detecção.
+> Resultado: nada foi detectado durante a etapa de aquisição de pré-requisitos, mas a execução do script foi interrompida imediatamente, comportamento esperado de um antivírus. Uma implementação customizada de Kerberoasting, ou o Rubeus rodando apenas em memória, provavelmente escapariam da detecção.
 
 ### Teste 3: Persistência
  
