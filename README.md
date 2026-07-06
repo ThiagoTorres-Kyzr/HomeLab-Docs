@@ -47,7 +47,7 @@ O experimento segue o ciclo:
 Limpar logs → Executar ataques → Exportar/Analisar logs → Documentar
 ```
  
-O teste começa em um Windows 10 sem defesas extras e depois é repetido em uma versão endurecida (hardened) da mesma máquina, para comparação direta. Os ataques são executados com o Atomic Red Team, mapeados diretamente a IDs do MITRE ATT&CK, cobrindo diferentes estágios de uma cadeia de ataque.
+O teste começa em um Windows 10 sem defesas extras e depois é repetido em uma versão endurecida (hardened) da mesma máquina, para comparação direta. Os ataques são executados com o Atomic Red Team, mapeados diretamente a IDs do MITRE ATT&CK, cobrindo diferentes estágios de uma cadeia de ataque. O foco será no comportamento observado na versão endurecida.
  
 ## Mudanças Realizadas (Hardening)
 
@@ -163,7 +163,16 @@ Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organ
  
 > Resultado: detectado, mas não classificado como malicioso. O Windows Defender não pode bloquear indiscriminadamente gravações na chave Run, já que softwares legítimos a usam constantemente, ele avalia o payload apontado, e se este parecer benigno, o mecanismo de persistência permanece ativo. É exatamente o tipo de cenário que justifica uma regra de detecção dedicada: quando não dá para bloquear de forma limpa, você detecta. Aqui o Hayabusa se mostra mais útil que uma solução de detecção em tempo real, pois oferece um rastro para seguir em uma investigação.
 
-### Visualização dos dados via Wazuh após conclusão dos testes:
+## Visualização dos dados via Wazuh após conclusão dos testes:
+
+### Versão baseline:
+
+![Dashboard Wazuh - Alert groups evolution e Alerts Unhardened](images/Wazuh_Dashboard_AlertsUnhardened.png)
+![Dashboard Wazuh - MITRE attacks by tactic e Rule level by tactic Unhardened](images/Wazuh_Dashboard_Mitre_Unhardened.png)
+![Dashboard Wazuh - Top tactics, Rule level by attack, evolução de alertas Unhardened](images/Wazuh_Dashboard_TopTactics_unhardened.png)
+
+### Versão Endurecida:
+
 ![Dashboard Wazuh - Alert groups evolution e Alerts](images/Wazuh_Dashboard_Alerts.png)
 ![Dashboard Wazuh - MITRE attacks by tactic e Rule level by tactic](images/Wazuh_Dashboard_Mitre.png)
 ![Dashboard Wazuh - Top tactics, Rule level by attack, evolução de alertas](images/Wazuh_Dashboard_TopTactics.png)
