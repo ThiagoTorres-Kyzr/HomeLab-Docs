@@ -16,6 +16,7 @@ O homelab segue um cenário de validação de defesas com um dispositivo endurec
 - A detecção baseada em assinaturas tem uma via clara de evasão: ferramentas personalizadas ou execução apenas em memória.
 - A cobertura via Sysmon/Sigma é mais orientada a comportamento, e por isso mais duradoura do que depender só de assinaturas de antivírus.
 - O ambiente endurecido gerou um volume de logs significativamente maior que a máquina em estado padrão, um custo operacional relevante a se considerar.
+- O ambiente não endurecido é relativamente seguro, mas em situações de investigação seja em tempo real ou como forense, deixa a desejar quanto aos dados disponíveis.
 
 ## Infraestrutura
 
