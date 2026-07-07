@@ -15,6 +15,7 @@ O homelab segue um cenário de validação de defesas com um dispositivo endurec
 - Comportamentos genéricos do Windows (comandos de descoberta, gravações no registro) não são bloqueados por nenhuma das medidas de hardening aplicadas.
 - A detecção baseada em assinaturas tem uma via clara de evasão: ferramentas personalizadas ou execução apenas em memória.
 - A cobertura via Sysmon/Sigma é mais orientada a comportamento, e por isso mais duradoura do que depender só de assinaturas de antivírus.
+- Hayabusa + Sigma Rules demonstrou resultados similares à solução em tempo real (Wazuh), sendo sua principal diferença o contexto de seu propósito de uso (forense e não monitoramento em tempo real).
 - O ambiente não endurecido é relativamente seguro, mas em situações de investigação seja em tempo real ou como forense, deixa a desejar quanto aos dados disponíveis.
 - O ambiente endurecido gerou um volume de logs significativamente maior que a máquina em estado padrão, um custo operacional relevante a se considerar.
 - A diferença em volume ocorreu devido a diferentes fontes reportando diversos eventos simultâneamente, frequentemente reportando o mesmo evento. Removendo duplicatas (alertas de diferentes fontes sobre o mesmo evento) ainda demonstrou maior diversidade de dados no final considerando que existiam na máquina endurecida, regras de detecção tanto no windows, quanto no software adicionado que contribuiram para esse maior volume.
@@ -133,7 +134,7 @@ endurecimento de sistemas envolve concessões (trade-offs).
  
 A análise foi feita de duas formas: em tempo real pelo Wazuh (alertas, logs e mapeamento MITRE ATT&CK) e posteriormente pelo Timeline Explorer, sobre os `.csv` gerados pelo Hayabusa.
  
-Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organizando eventos por criticalidade de forma parecida. Não são mutuamente exclusivos: o Wazuh permite reação em tempo real de um analista SOC, enquanto o Hayabusa é mais forte em análise forense *a posteriori*. Útil para investigação, não para reação. Uma diferença notável: algumas tentativas malsucedidas registradas pelo Sysmon foram ignoradas ou parcialmente reconhecidas pelo Hayabusa; nesses casos, prevaleceram os logs do próprio Windows Defender relatando o bloqueio.
+Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organizando eventos por criticalidade de forma parecida. Não são mutuamente exclusivos: o Wazuh permite reação em tempo real de um analista SOC, enquanto o Hayabusa é mais forte em análise forense *a posteriori*. Útil para investigação, não para reação. Uma diferença notável: algumas tentativas malsucedidas registradas pelo Sysmon foram ignoradas ou parcialmente reconhecidas pelo Hayabusa por conflitos com outras fontes; nesses casos, prevaleceram os logs do próprio Windows Defender relatando o bloqueio.
 
 ### Teste 1: Descoberta
  
@@ -149,7 +150,7 @@ Wazuh e Hayabusa têm capacidade de detecção e agregação comparáveis, organ
  
 **Dump de memória do LSASS via Mimikatz** (`T1003.001`)
  
-> Resultado: detectado e bloqueado imediatamente.
+> Resultado: detectado e bloqueado imediatamente, resultando num alerta de nível médio apenas.
  
 **Kerberoasting** (`T1558.003`) e **AS-REP Roasting** (`T1558.004`)
  
